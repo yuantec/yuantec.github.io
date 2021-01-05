@@ -98,12 +98,37 @@
 <h2 id="1-软件准备以及配置"><a href="#1-软件准备以及配置" class="headerlink" title="1:软件准备以及配置"></a>1:软件准备以及配置</h2><p>在软件的准备上，首先我们应该了解到，我们实际需要的环境搭建的软件只需要Github以及nodeJS。</p>
 <h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>我所使用的Hexo博客框架是基于Node.js 驱动的。下接node官方网站。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;nodejs.cn&#x2F;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>本人目前对于git了解仍很薄弱，如果我还记得我一定会补充。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;</span><br></pre></td></tr></table></figure>
+<p>​    安装后可通过一下指令检查版本号，检查是否安装成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>以上都安装成功后，我们仍需安装hexo。</p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>安装方法比较简单，只需要执行以下命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>并通过执行以下命令建所需文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h3 id="新建完成后，指定文件夹的目录如下："><a href="#新建完成后，指定文件夹的目录如下：" class="headerlink" title="新建完成后，指定文件夹的目录如下："></a>新建完成后，指定文件夹的目录如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml # 网站的配置信息，您可以在此配置大部分的参数。 </span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds # 模版文件夹</span><br><span class="line">├── source  # 资源文件夹，除 _posts 文件，其他以下划线_开头的文件或者文件夹不会被编译打包到public文件夹</span><br><span class="line">|   ├── _drafts # 草稿文件</span><br><span class="line">|   └── _posts # 文章Markdowm文件 </span><br><span class="line">└── themes  # 主题文件夹</span><br></pre></td></tr></table></figure>
+<h2 id="配置-SSH-key"><a href="#配置-SSH-key" class="headerlink" title="配置 SSH key"></a>配置 SSH key</h2><p>要使用 git 工具首先要配置一下SSH key，为部署本地博客到 Github 做准备。</p>
+<p>打开命令行输入 cd ~/.ssh 如果没报错或者提示什么的说明就是以前生成过的，直接使用 下方命令就是可以查看本机上的 SSH key 了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>如果之前没有创建，则执行以下命令全局配置一下本地账户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email &quot;邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+<p>注意三次回车。</p>
+<p>首次使用还需要确认并添加主机到本机SSH可信列表。若返回 Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access. 内容，则证明添加成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com </span><br></pre></td></tr></table></figure>
+<p>上述步骤都完成后，还需添加刚刚生成的SSH key。</p>
+<h3 id="添加SSH-key"><a href="#添加SSH-key" class="headerlink" title="添加SSH key"></a>添加SSH key</h3><p><img src="https://segmentfault.com/img/remote/1460000017990248" alt="image"></p>
+<p>创建一个新的 SSH key, 标题随便，key 就填刚才生成那个，确认创建，搞定！！这样在你的 SSH keys 列表里就会看到你刚刚添加的密钥。</p>
+<p><img src="https://segmentfault.com/img/remote/1460000017990249?w=1019&h=441" alt="image"></p>
+<h2 id="部署到-Github"><a href="#部署到-Github" class="headerlink" title="部署到 Github"></a>部署到 Github</h2><p>此时，本地和Github的工作做得差不了，我们应当把它们两个连接起来。</p>
+<p>第一：打开项目根目录下的 _config.yml 配置文件配置参数。拉到文件末尾，填上如下配置：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000017990250" alt="image"></p>
+<p>第二：要安装一个部署插件 <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a>。</p>
+<p>方法：输入以下指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>最后执行以下命令就可以部署上传啦，以下 g 是 generate 缩写，d 是 deploy 缩写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+<p>最后，在浏览器访问网址： <a target="_blank" rel="noopener" href="https://你的用户名.github.io/">https://你的用户名.github.io</a> 就会看到我们的博客啦！！</p>
 
       
     </div>
